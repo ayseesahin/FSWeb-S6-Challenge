@@ -1,69 +1,68 @@
 // Karakter bileşeniniz buraya gelecek
-import axios from "axios";
-import React from "react";
 import { useEffect, useState } from "react";
-import Accordeon from "./Accordeon";
+import axios from "axios";
 import Filmler from "./Filmler";
+import Accordeon from "./Accordeon";
 
-function Karakterler(data) {
-  const [starData, setStarData] = useState();
-  const [starFilms, setStarFilms] = useState();
+function Karakter(data) {
+  const [characters, setcharacters] = useState([]);
+  const [films, setfilms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const starPromis = axios("https://swapi.dev/api/people/");
+    const charPromis = axios("https://swapi.dev/api/people/");
     const filmPromis = axios("https://swapi.dev/api/films/");
     const promise3 = new Promise((resolve, reject) => {
       setTimeout(resolve, 1000, "foo");
     });
 
-    Promise.all([starPromis, filmPromis, promise3]).then((values) => {
+    Promise.all([charPromis, filmPromis, promise3]).then((values) => {
       console.log(values);
-      setStarData(values[0].data);
-      setStarFilms(values[1].data[0].results);
+      setcharacters(values[0].data);
+      setfilms(values[1].data[0].results);
       setLoading(false);
     });
   }, []);
 
   return (
     <div>
-      {loading && <h2>Yükleniyor...</h2>}
-      {loading &&
-        starData.map((character, i) => {
+      {loading && <h2>Loading...</h2>}
+      {!loading &&
+        characters.map((chr, i) => {
           return (
-            <Accordeon key={"c" + i} title={character.name}>
+            <Accordeon key={"c" + i} title={chr.name}>
               <p>
                 <span>Height: </span>
-                {character.height}
+                {chr.height}
               </p>
               <p>
                 <span>Mass: </span>
-                {character.mass}
+                {chr.mass}
               </p>
               <p>
                 <span>Gender: </span>
-                {character.gender}
+                {chr.gender}
               </p>
               <p>
                 <span>Eye Color: </span>
-                {character.eye_color}
+                {chr.eye_color}
               </p>
               <p>
                 <span>Hair Color: </span>
-                {character.hair_color}
+                {chr.hair_color}
               </p>
               <p>
                 <span>Birth Year: </span>
-                {character.birth_year}
+                {chr.birth_year}
               </p>
               <p>
                 <span>Skin Color: </span>
-                {character.skin_color}
+                {chr.skin_color}
               </p>
               <p>
-                <span>Appears in: </span>
+                <span>Appears in {chr.films.length} films </span>
               </p>
-              <Filmler starData={starData} i={i} starFilms={starFilms} />
+              <Filmler chr={chr} i={i} films={films} />
             </Accordeon>
           );
         })}
@@ -71,4 +70,4 @@ function Karakterler(data) {
   );
 }
 
-export default Karakterler;
+export default Karakter;

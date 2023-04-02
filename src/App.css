@@ -6,24 +6,25 @@
   align-content: center;
   padding: 0 20%;
   min-height: 100vh;
+  font-family: "Stick No Bills", sans-serif;
 }
 
 .Header {
-  color: #443e3e;
-  text-shadow: 1px 1px 5px #fff;
+  font-family: "Monoton", cursive;
+  color: #d6d1d1;
+  text-shadow: 0.5px 0.5px 3px #fff;
 }
 
 .accordeon {
   display: flex;
   flex-direction: column;
-  background-color: rgba(200, 200, 200, 0.6);
   margin: 0.5rem auto;
-  border-radius: 1rem;
+  padding: 0.5rem;
+  border: solid rgb(21, 90, 21);
 }
 
 .accordeon__detail {
   padding: 0.5rem 2rem 0.5rem;
-  background-color: rgba(226, 0, 0, 0.2);
 }
 
 .accordeon__detail p {
@@ -41,6 +42,7 @@
 p {
   font-size: 0.8rem;
   font-weight: normal;
+  font-family: sans-serif;
 }
 
 /* write your parent styles in here for your App.js */

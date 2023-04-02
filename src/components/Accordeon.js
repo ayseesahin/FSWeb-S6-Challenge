@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import React from "react";
 
-export default function Accordeon(props) {
+function Accordeon(props) {
   const [closed, setClosed] = useState(true);
   const { children, title } = props;
   const toggle = () => setClosed(!closed);
   return (
-    <div onClick={() => toggle()}>
-      <div>{title}</div>
-      {!closed && <div>{children}</div>}
+    <div className="accordeon">
+      <div className="acordeon__title" onClick={() => toggle()}>
+        {title}
+      </div>
+      {!closed && <div className="accorddeon__detail">{children}</div>}
     </div>
   );
 }
+
+export default Accordeon;

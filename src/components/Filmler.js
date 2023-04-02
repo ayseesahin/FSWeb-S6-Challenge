@@ -1,20 +1,18 @@
-import Accordeon from "./Accordeon";
+import Film from "./Film";
 
-function Filmler(props) {
-  const { film, i } = props;
+function Films(props) {
+  const { chr, i, films } = props;
   return (
-    <div>
-      <Accordeon title={film.title}>
-        <div key={"f" + i}>
-          {film.title} {film.director}
-          <p>Title: {film.title}</p>
-          <p>Director: {film.director}</p>
-          <p>Producer: {film.producer}</p>
-          <p>Release Date: {film.release_date}</p>
-        </div>
-      </Accordeon>
-    </div>
+    <h2>
+      <p>
+        {films
+          .filter((film) => chr.films.includes(film.title))
+          .map((film, i) => {
+            return <Film film={film} i={i} />;
+          })}
+      </p>
+    </h2>
   );
 }
 
-export default Filmler;
+export default Films;
