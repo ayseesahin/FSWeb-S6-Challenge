@@ -26,8 +26,11 @@ function Karakter(data) {
 
   return (
     <div>
-      {loading && <h2>Loading...</h2>}
-      {!loading &&
+      {/* {loading && <h2>Loading...</h2>}
+      {!loading && */}
+      {loading ? (
+        <h2>Yükleniyor...</h2>
+      ) : (
         characters.map((chr, i) => {
           return (
             <Accordeon key={"c" + i} title={chr.name}>
@@ -65,7 +68,8 @@ function Karakter(data) {
               <Filmler chr={chr} i={i} films={films} />
             </Accordeon>
           );
-        })}
+        })
+      )}
     </div>
   );
 }
